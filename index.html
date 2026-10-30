@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Glow | EffectCraft Plug-in</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f5f3ff',
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            700: '#6d28d9',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .light .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 light:bg-slate-50 light:text-slate-900 min-h-screen font-sans antialiased selection:bg-purple-500 selection:text-white transition-colors duration-300">
+
+    <!-- Ambient Background Blobs -->
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full overflow-hidden pointer-events-none -z-10">
+        <div class="absolute -top-40 left-10 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl"></div>
+        <div class="absolute top-1/3 -right-20 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl"></div>
+    </div>
+
+    <!-- Header / Navigation -->
+    <header class="sticky top-0 z-50 backdrop-blur-md border-b border-slate-800/80 light:border-slate-200/80 light:bg-white/80">
+        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="#" class="font-extrabold text-xl tracking-tight text-white light:text-slate-900 flex items-center gap-2">
+                <i class="fa-solid fa-wand-magic-sparkles text-purple-500"></i>
+                <span>Deep<span class="text-purple-500">Glow</span></span>
+            </a>
+
+            <!-- Nav Links & Theme Toggle -->
+            <div class="flex items-center gap-6">
+                <nav class="hidden md:flex gap-6 text-sm font-medium text-slate-400 light:text-slate-600">
+                    <a href="#about" class="hover:text-white light:hover:text-slate-900 transition-colors">Overview</a>
+                    <a href="#installation" class="hover:text-white light:hover:text-slate-900 transition-colors">Installation</a>
+                    <a href="https://github.com/o1005954-alt/Deep-Glow" target="_blank" class="text-purple-400 hover:text-purple-300">GitHub →</a>
+                </nav>
+
+                <button id="themeToggle" class="p-2 rounded-lg bg-slate-900 border border-slate-800 light:bg-slate-100 light:border-slate-200 text-slate-400 hover:text-white light:hover:text-slate-900 transition-all">
+                    <i id="themeIcon" class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="about" class="max-w-6xl mx-auto px-6 py-24 md:py-32 flex flex-col items-center text-center">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-semibold uppercase tracking-wider mb-6">
+            <span class="w-2 h-2 rounded-full bg-purple-400 animate-pulse"></span> WebAssembly Plug-in API v1[cite: 5]
+        </div>
+        
+        <h1 class="text-4xl md:text-6xl font-black tracking-tight text-white light:text-slate-900 max-w-3xl leading-tight mb-6">
+            Deep Glow <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 bg-clip-text text-transparent">(Open) for EffectCraft</span>[cite: 5]
+        </h1>
+        
+        <p class="text-lg text-slate-400 light:text-slate-600 max-w-2xl mb-8 leading-relaxed">
+            An original multi-scale glow plug-in for EffectCraft[cite: 5]. Inspired by premium glow plug-ins, engineered with high performance and zero shared code[cite: 5].
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-4">
+            <a href="https://github.com/o1005954-alt/Deep-Glow/releases" target="_blank" class="px-6 py-3 rounded-lg bg-purple-600 hover:bg-purple-500 text-white font-medium shadow-lg shadow-purple-500/25 transition-all flex items-center gap-2">
+                <i class="fa-solid fa-download"></i> Download .wasm
+            </a>
+            <a href="#installation" class="px-6 py-3 rounded-lg bg-slate-900 border border-slate-800 light:bg-white light:border-slate-300 light:text-slate-800 hover:bg-slate-800 font-medium transition-all flex items-center gap-2">
+                <i class="fa-solid fa-terminal"></i> Installation Guide
+            </a>
+        </div>
+    </section>
+
+    <!-- Installation Section -->
+    <section id="installation" class="max-w-4xl mx-auto px-6 py-16">
+        <div class="glass-card p-8 rounded-2xl border border-slate-800/80 light:border-slate-200/80">
+            <h2 class="text-2xl font-bold text-white light:text-slate-900 mb-6 flex items-center gap-3">
+                <i class="fa-solid fa-book-open text-purple-400"></i> Installation Guide
+            </h2>
+            <ol class="space-y-4 text-slate-300 light:text-slate-700 text-sm md:text-base">
+                <li class="flex items-start gap-3">
+                    <span class="flex-shrink-0 w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-xs">1</span>
+                    <div>Download the compiled <code class="text-purple-400 font-mono">deep_glow.wasm</code> file from the <a href="https://github.com/o1005954-alt/Deep-Glow/releases" target="_blank" class="text-purple-400 underline">Releases page</a>[cite: 5].</div>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="flex-shrink-0 w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-xs">2</span>
+                    <div><strong>Directly in EffectCraft:</strong> Go to <code class="bg-slate-900 px-2 py-1 rounded text-purple-300 font-mono">Effect → Load Effect Plug-in...</code> and select the <code class="text-purple-400 font-mono">.wasm</code> file[cite: 5].</div>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="flex-shrink-0 w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-xs">3</span>
+                    <div><strong>Manual Installation:</strong> Move <code class="text-purple-400 font-mono">deep_glow.wasm</code> to your platform's Plug-ins directory[cite: 5]:</div>
+                </li>
+            </ol>
+
+            <div class="mt-6 space-y-3 font-mono text-xs md:text-sm bg-slate-950 p-4 rounded-xl border border-slate-800 text-slate-300">
+                <div>🐧 <strong class="text-white">Linux:</strong> <span class="text-purple-300">~/.config/effectcraft/Plug-ins/</span>[cite: 5]</div>
+                <div>🍎 <strong class="text-white">macOS:</strong> <span class="text-purple-300">~/Library/Application Support/EffectCraft/Plug-ins/</span>[cite: 5]</div>
+                <div>💻 <strong class="text-white">Windows:</strong> <span class="text-purple-300">%APPDATA%\EffectCraft\Plug-ins\</span>[cite: 5]</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800/80 light:border-slate-200/80 mt-24 py-12">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+            <p class="text-sm text-slate-500">
+                Hosted on <a href="https://pages.github.com/" target="_blank" class="text-purple-400 hover:underline">GitHub Pages</a>
+            </p>
+            <div class="flex items-center gap-6 text-slate-400">
+                <a href="https://github.com/o1005954-alt/Deep-Glow" target="_blank" class="hover:text-white transition-colors text-lg"><i class="fa-brands fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.classList.add('light');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                document.documentElement.classList.add('light');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.classList.remove('light');
+                document.documentElement.classList.add('dark');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    </script>
+</body>
+</html>
