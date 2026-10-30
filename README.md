@@ -1,4 +1,4 @@
-
+[github_readme (1).md](https://github.com/user-attachments/files/34183649/github_readme.1.md)
 # Deep Glow (Open) for EffectCraft
 
 An original multi-scale glow plug-in for **EffectCraft** (WebAssembly, plug-in API v1).
@@ -8,9 +8,7 @@ It is inspired by the look of premium glow plug-ins, but shares no code with the
 
 | Before | After (Deep Glow) |
 | :---: | :---: |
-| <img width="2408" height="1506" alt="image" src="https://github.com/user-attachments/assets/858d701c-78b5-4de8-aacb-b0c332f7c105" />
- | <img width="2408" height="1506" alt="image" src="https://github.com/user-attachments/assets/5d26722b-68e5-4b72-878a-4c0ceafcc9f3" />
- |
+| <img width="1286" height="737" alt="Screenshot 1448-05-19 at 3 39 45 PM" src="https://github.com/user-attachments/assets/bb1c7bbd-f0cd-4807-b198-fd225823d365" /> | <img width="1278" height="716" alt="Screenshot 1448-05-19 at 3 48 45 PM" src="https://github.com/user-attachments/assets/aac6ba26-84f5-4c61-8e37-47d53fd3213e" /> |
 
 *Comparison showing standard input vs. multi-scale glow output with chromatic spread enabled.*
 
